@@ -1,0 +1,447 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProyectadasKai</title>
+
+<style>
+:root {
+  --fondo: #080816;
+  --panel: #14142b;
+  --morado: #9b5cff;
+  --texto: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 6%;
+  background: #101020ee;
+  border-bottom: 1px solid #9b5cff66;
+  backdrop-filter: blur(12px);
+}
+
+.logo {
+  font-size: clamp(20px, 3vw, 30px);
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff4d8d, #a855f7, #35d9ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+nav {
+  display: flex;
+  gap: 22px;
+}
+
+nav a {
+  color: #ddd3ff;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+nav a:hover {
+  color: #35d9ff;
+}
+
+.menu {
+  display: none;
+  color: white;
+  background: transparent;
+  border: 0;
+  font-size: 27px;
+  cursor: pointer;
+}
+
+.contenedor {
+  width: min(1100px, 90%);
+  margin: auto;
+}
+
+.hero {
+  min-height: 78vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 22px;
+  padding: 65px 0;
+}
+
+.globo {
+  width: clamp(190px, 35vw, 330px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 2px solid #a855f7;
+  background: radial-gradient(circle at 35% 30%, #343466, #111126 65%);
+  box-shadow: 0 0 25px #8b5cf688, inset 0 0 30px #8b5cf744;
+  animation: flotar 4s ease-in-out infinite;
+}
+
+.globo-texto {
+  font-size: clamp(11px, 2vw, 17px);
+  line-height: 1.6;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+  background: linear-gradient(
+    90deg, red, orange, yellow, lime, cyan, #a855f7, pink, red
+  );
+  background-size: 300% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: arcoiris 5s linear infinite;
+  transform: rotate(-12deg);
+}
+
+@keyframes arcoiris {
+  to { background-position: 300% 50%; }
+}
+
+@keyframes flotar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+h1 {
+  font-size: clamp(28px, 5vw, 48px);
+}
+
+h1 span {
+  color: #bd8aff;
+}
+
+.hero p {
+  color: #bcbcd5;
+  font-size: clamp(15px, 2vw, 18px);
+  max-width: 550px;
+  line-height: 1.6;
+}
+
+.boton {
+  display: inline-block;
+  background: linear-gradient(90deg, #8b5cf6, #d946ef);
+  color: white;
+  border: 0;
+  border-radius: 12px;
+  padding: 14px 23px;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .2s;
+}
+
+.boton:hover {
+  transform: scale(1.05);
+}
+
+.seccion {
+  padding: 55px 0;
+  scroll-margin-top: 80px;
+}
+
+.seccion h2 {
+  text-align: center;
+  font-size: clamp(25px, 4vw, 35px);
+  margin-bottom: 25px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid #9b5cff44;
+  border-radius: 18px;
+  padding: clamp(20px, 4vw, 32px);
+  line-height: 1.8;
+}
+
+.proyectos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.proyecto {
+  padding: 24px;
+  background: var(--panel);
+  border: 1px solid #9b5cff44;
+  border-radius: 16px;
+  transition: transform .2s, border-color .2s;
+}
+
+.proyecto:hover {
+  transform: translateY(-5px);
+  border-color: var(--morado);
+}
+
+.proyecto h3 {
+  margin-bottom: 10px;
+  color: #c4a2ff;
+}
+
+.proyecto p {
+  color: #c8c8dc;
+  line-height: 1.6;
+}
+
+#dispositivo {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 20;
+  background: #14142bee;
+  color: #cdb7ff;
+  border: 1px solid #9b5cff88;
+  border-radius: 20px;
+  padding: 8px 12px;
+  font-size: 12px;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 15px;
+  color: #9999b5;
+  border-top: 1px solid #9b5cff33;
+}
+
+/* TELÉFONOS */
+@media (max-width: 600px) {
+  header {
+    padding: 15px 5%;
+  }
+
+  .menu {
+    display: block;
+  }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+    padding: 10px 5%;
+    background: #101020;
+  }
+
+  nav.abierto {
+    display: flex;
+  }
+
+  nav a {
+    padding: 14px 5px;
+  }
+
+  .hero {
+    min-height: 75vh;
+    gap: 20px;
+  }
+
+  .globo {
+    width: min(72vw, 270px);
+  }
+
+  .proyectos {
+    grid-template-columns: 1fr;
+  }
+
+  #dispositivo {
+    font-size: 10px;
+  }
+}
+
+/* TABLETS */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .contenedor {
+    width: 88%;
+  }
+
+  .proyectos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero {
+    min-height: 70vh;
+  }
+}
+
+/* PC */
+@media (min-width: 1025px) {
+  .contenedor {
+    width: min(1100px, 85%);
+  }
+
+  .hero {
+    min-height: 85vh;
+  }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">ProyectadasKai ✦</div>
+
+  <button class="menu" id="botonMenu"
+    aria-label="Abrir menú"
+    aria-expanded="false"
+    onclick="alternarMenu()">☰</button>
+
+  <nav id="nav">
+    <a href="#inicio" onclick="cerrarMenu()">Inicio</a>
+    <a href="#sobre" onclick="cerrarMenu()">Sobre mí</a>
+    <a href="#proyectos" onclick="cerrarMenu()">Proyectos</a>
+    <a href="#contacto" onclick="cerrarMenu()">Contacto</a>
+  </nav>
+</header>
+
+<main class="contenedor">
+
+  <section class="hero" id="inicio">
+    <div class="globo">
+      <div class="globo-texto">
+        HELLO WORLD<br>
+        PROYECTADAS KAI ✦<br>
+        IDEAS ✧ CREATIVIDAD<br>
+        TECNOLOGÍA ✦ SUEÑOS<br>
+        HTML • CSS • JAVASCRIPT
+      </div>
+    </div>
+
+    <h1>Bienvenido a <span>ProyectadasKai</span></h1>
+
+    <p>
+      Un pequeño universo digital lleno de ideas,
+      creatividad y tecnología. ¡Explora mi mundo!
+    </p>
+
+    <a class="boton" href="#proyectos">Explorar proyectos ↓</a>
+  </section>
+
+  <section class="seccion" id="sobre">
+    <h2>Sobre mí ✨</h2>
+    <div class="panel">
+      ¡Hola! Bienvenido a ProyectadasKai. Este espacio
+      está hecho para compartir ideas, experimentar con
+      tecnología y crear cosas increíbles. 💜
+    </div>
+  </section>
+
+  <section class="seccion" id="proyectos">
+    <h2>Mis proyectos 🚀</h2>
+
+    <div class="proyectos">
+      <article class="proyecto">
+        <h3>💻 Desarrollo web</h3>
+        <p>Páginas web con diseños modernos y efectos visuales.</p>
+      </article>
+
+      <article class="proyecto">
+        <h3>🎨 Creatividad</h3>
+        <p>Ideas originales convertidas en experiencias digitales.</p>
+      </article>
+
+      <article class="proyecto">
+        <h3>🌌 Innovación</h3>
+        <p>Un espacio para experimentar y aprender tecnología.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="seccion" id="contacto">
+    <h2>Contacto 💌</h2>
+    <div class="panel">
+      Gracias por visitar ProyectadasKai.
+      ¡Este universo sigue creciendo! 💜
+    </div>
+  </section>
+
+</main>
+
+<div id="dispositivo">Detectando dispositivo...</div>
+
+<footer>
+  Hecho con 💜 por ProyectadasKai
+</footer>
+
+<script>
+function detectarDispositivo() {
+  const ancho = window.innerWidth;
+  let tipo;
+
+  if (ancho <= 600) {
+    tipo = "Teléfono";
+  } else if (ancho <= 1024) {
+    tipo = "Tablet";
+  } else {
+    tipo = "PC";
+  }
+
+  document.getElementById("dispositivo").textContent =
+    "Vista adaptable: " + tipo;
+}
+
+function alternarMenu() {
+  const nav = document.getElementById("nav");
+  const boton = document.getElementById("botonMenu");
+  const abierto = nav.classList.toggle("abierto");
+
+  boton.setAttribute("aria-expanded", String(abierto));
+  boton.textContent = abierto ? "✕" : "☰";
+}
+
+function cerrarMenu() {
+  document.getElementById("nav").classList.remove("abierto");
+  document.getElementById("botonMenu").setAttribute(
+    "aria-expanded", "false"
+  );
+  document.getElementById("botonMenu").textContent = "☰";
+}
+
+window.addEventListener("resize", detectarDispositivo);
+detectarDispositivo();
+</script>
+
+</body>
+</html>
